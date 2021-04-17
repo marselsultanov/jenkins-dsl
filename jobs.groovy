@@ -33,7 +33,7 @@ for (i in (1..4)) {
                 remote {
                     url(git)
                 }
-                branch('Branch')
+                branch('$Branch')
             }
         }
 
