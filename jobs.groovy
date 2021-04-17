@@ -1,3 +1,4 @@
+def git = 'https://github.com/marselsultanov/jenkins-dsl'
 	job ("Main") {
 		parameters {
 			choiceParam('Branch', ['main', 'msultanov'])
@@ -30,7 +31,7 @@ for (i in (1..4)) {
         scm {
             git {
                 remote {
-                    url(https://github.com/marselsultanov/jenkins-dsl)
+                    url(git)
                 }
                 branch('Branch')
             }
