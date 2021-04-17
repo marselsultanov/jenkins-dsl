@@ -48,12 +48,12 @@ it.split()[1].replaceAll(\'refs/heads/\', \'\')}.sort()''')
 
 	steps {
 		shell('''bash script.sh > output.txt
-tar -czf $Branch_dsl_script.tar.gz jobs.groovy''')
+tar -czf ${Branch}_dsl_script.tar.gz jobs.groovy''')
 	}
 	
 	publishers {
 		archiveArtifacts {
-			pattern('$Branch_dsl_script.tar.gz')
+			pattern('${Branch}_dsl_script.tar.gz')
 			allowEmpty(false)
 			onlyIfSuccessful(false)
 			fingerprint(false)
