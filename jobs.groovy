@@ -26,7 +26,7 @@ job ("Main") {
 }
 
 for (i in (1..4)) {
-    job("MNTLAB-ukuchynski-child${i}-build-job") {
+    job("Child$i") {
 
         scm {
             git {
