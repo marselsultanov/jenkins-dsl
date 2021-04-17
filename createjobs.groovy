@@ -1,30 +1,24 @@
-def giturl = 'https://github.com/MNT-Lab/d323dsl.git'
-job ("MNTLAB-ukuchynski-main-build-job") {
-//    description 'Main job'
+def github = 'https://github.com/marselsultanov/jenkins-dsl'
+job ("Main") {
     parameters {
-        choiceParam('BRANCH_NAME', ['ukuchynski', 'master'], 'Branch name')
-        activeChoiceParam('Next_job') {
-            description('Choose job')
+        choiceParam('Branch', ['main', 'msultanov'])
+        activeChoiceParam('Child') {
             choiceType('CHECKBOX')
             groovyScript {
-                script('''return ["MNTLAB-ukuchynski-child1-build-job",
-                        "MNTLAB-ukuchynski-child2-build-job",
-                        "MNTLAB-ukuchynski-child3-build-job",
-                        "MNTLAB-ukuchynski-child4-build-job"]''')
+                script('return ["Child 1","Child 2","Child 3","Child 4"]')
             }
         }
     }
-//  BUILD_TRIGGER
     steps {
         downstreamParameterized {
-            trigger('$Next_job') {
+            trigger('$Child') {
                 block {
                     buildStepFailure('FAILURE')
                     failure('FAILURE')
                     unstable('UNSTABLE')
                 }
                 parameters {
-                    predefinedProp('BRANCH_NAME', '$BRANCH_NAME')
+                    predefinedProp('Branch', '$Branch')
                 }
             }
         }
@@ -37,7 +31,7 @@ for (i in (1..4)) {
         scm {
             git {
                 remote {
-                    url(giturl)
+                    url(github)
                 }
                 branch('$BRANCH_NAME')
             }
