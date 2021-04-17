@@ -42,7 +42,7 @@ it.split()[1].replaceAll(\'refs/heads/\', \'\')}.sort()''')
 		remote {
 			url('https://github.com/marselsultanov/jenkins-dsl')
 		}
-		branch('$BRANCH_NAME')
+		branch('$Branch')
 		}
 	}
 
