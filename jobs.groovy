@@ -27,15 +27,15 @@ def git = 'https://github.com/marselsultanov/jenkins-dsl'
 	}
 
 for (i in (1..4)) {
-    job("Child$i") {
-        scm {
-            git {
-                remote {
-                    url(git)
-                }
-                branch('$Branch')
-            }
-        }
+	job("Child$i") {
+		scm {
+			git {
+				remote {
+					url(git)
+				}
+				branch('$Branch')
+			}
+		}
 
         parameters {
             activeChoiceParam('Branch') {
