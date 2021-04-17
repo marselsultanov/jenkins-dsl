@@ -1,4 +1,4 @@
-def giturl = 'https://github.com/MNT-Lab/d323dsl.git'
+def giturl = 'https://github.com/MNT-Lab/d323dsl'
 	job ("Main") {
 		parameters {
 			choiceParam('Branch', ['main', 'msultanov'])
