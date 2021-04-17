@@ -1,60 +1,57 @@
-def git = 'https://github.com/marselsultanov/jenkins-dsl'
-	job ("Main") {
-		parameters {
-			choiceParam('Branch', ['main', 'msultanov'])
-			activeChoiceParam('Child') {
-				choiceType('CHECKBOX')
-				groovyScript {
-					script('return ["Child 1","Child 2","Child 3","Child 4"]')
-				}
-			}
-		}
-		
-		steps {
-			downstreamParameterized {
-				trigger('$Child') {
-					block {
-						buildStepFailure('FAILURE')
-						failure('FAILURE')
-						unstable('UNSTABLE')
-					}
-					parameters {
-						predefinedProp('Branch', '$Branch')
-					}
-				}
-			}
-		}
-	}
+def giturl = 'https://github.com/MNT-Lab/d323dsl.git'
+job ("MNTLAB-ukuchynski-main-build-job") {
+//    description 'Main job'
+    parameters {
+        choiceParam('BRANCH_NAME', ['ukuchynski', 'master'], 'Branch name')
+        activeChoiceParam('Next_job') {
+            description('Choose job')
+            choiceType('CHECKBOX')
+            groovyScript {
+                script('''return ["MNTLAB-ukuchynski-child1-build-job",
+                        "MNTLAB-ukuchynski-child2-build-job",
+                        "MNTLAB-ukuchynski-child3-build-job",
+                        "MNTLAB-ukuchynski-child4-build-job"]''')
+            }
+        }
+    }
+//  BUILD_TRIGGER
+    steps {
+        downstreamParameterized {
+            trigger('$Next_job') {
+                block {
+                    buildStepFailure('FAILURE')
+                    failure('FAILURE')
+                    unstable('UNSTABLE')
+                }
+                parameters {
+                    predefinedProp('BRANCH_NAME', '$BRANCH_NAME')
+                }
+            }
+        }
+    }
+}
 
 for (i in (1..4)) {
-	job("Child$i") {
-		scm {
-			git {
-				remote {
-					url(git)
-				}
-				branch('$Branch')
-			}
-		}
-
+    job("MNTLAB-ukuchynski-child${i}-build-job") {
         parameters {
-            activeChoiceParam('Branch') {
+            activeChoiceParam('BRANCH_NAME') {
+                description('Choose branch')
                 choiceType('SINGLE_SELECT')
                 groovyScript {
-                    script('''("git ls-remote -h https://github.com/marselsultanov/jenkins-dsl").execute().text.readLines().collect{
-					it.split()[1].replaceAll(\'refs/heads/\', \'\')}.sort()''')
+                    script('''("git ls-remote -h https://github.com/MNT-Lab/d323dsl").execute().text.readLines().collect {
+                      it.split()[1].replaceAll(\'refs/heads/\', \'\')}.sort()''')
                 }
             }
         }
 
         steps {
-            shell('''bash script.sh > output.txt
-			tar -czf $Branch_dsl_script.tar.gz jobs.groovy''')
+            shell('''
+   bash script.sh > output.txt
+   tar -czf ${BRANCH_NAME}_dsl_script.tar.gz jobs.groovy''')
         }
-		
         publishers {
             archiveArtifacts {
-                pattern('$Branch_dsl_script.tar.gz')
+                pattern('${BRANCH_NAME}_dsl_script.tar.gz')
                 allowEmpty(false)
                 onlyIfSuccessful(false)
                 fingerprint(false)
