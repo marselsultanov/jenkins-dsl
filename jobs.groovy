@@ -32,7 +32,7 @@ job("Child$i") {
 			choiceType('SINGLE_SELECT')
 			groovyScript {
 				script('''("git ls-remote -h https://github.com/marselsultanov/jenkins-dsl").execute().text.readLines().collect{
-				it.split()[1].replaceAll(\'refs/heads/\', \'\')}.sort()''')
+it.split()[1].replaceAll(\'refs/heads/\', \'\')}.sort()''')
 			}
 		}
 	}
