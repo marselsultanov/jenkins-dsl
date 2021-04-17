@@ -48,7 +48,7 @@ job("Child$i") {
 
 	steps {
 		shell('''bash script.sh > output.txt
-		tar -czf $Branch_dsl_script.tar.gz jobs.groovy''')
+tar -czf $Branch_dsl_script.tar.gz jobs.groovy''')
 	}
 	
 	publishers {
