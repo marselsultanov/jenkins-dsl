@@ -30,7 +30,7 @@ for (i in (1..4)) {
 		scm {
 			git {
 			remote {
-				url(https://github.com/MNT-Lab/d323dsl.git)
+				url('https://github.com/MNT-Lab/d323dsl.git')
 			}
 			branch('$BRANCH_NAME')
 			}
