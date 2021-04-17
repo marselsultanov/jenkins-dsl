@@ -4,7 +4,7 @@ job ("Main") {
 		activeChoiceParam('Child') {
 			choiceType('CHECKBOX')
 			groovyScript {
-				script('return ["Child 1","Child 2","Child 3","Child 4"]')
+				script('return ["Child1","Child2","Child3","Child4"]')
 			}
 		}
 	}
