@@ -1,3 +1,4 @@
+def giturl = 'https://github.com/MNT-Lab/d323dsl.git'
 	job ("Main") {
 		parameters {
 			choiceParam('Branch', ['main', 'msultanov'])
@@ -30,7 +31,7 @@ for (i in (1..4)) {
 		scm {
 			git {
 			remote {
-				url(https://github.com/MNT-Lab/d323dsl)
+				url(giturl)
 			}
 			branch('$BRANCH_NAME')
 			}
