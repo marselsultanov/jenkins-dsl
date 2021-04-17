@@ -1,4 +1,4 @@
-def git = 'https://github.com/marselsultanov/jenkins-dsl'
+def giturl = 'https://github.com/MNT-Lab/d323dsl.git'
 	job ("Main") {
 		parameters {
 			choiceParam('Branch', ['main', 'msultanov'])
@@ -28,6 +28,15 @@ def git = 'https://github.com/marselsultanov/jenkins-dsl'
 
 for (i in (1..4)) {
 	job("Child$i") {
+		scm {
+			git {
+			remote {
+				url(giturl)
+			}
+			branch('$BRANCH_NAME')
+			}
+		}
+	
         parameters {
             activeChoiceParam('Branch') {
                 choiceType('SINGLE_SELECT')
