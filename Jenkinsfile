@@ -3,7 +3,7 @@ node {
       checkout scm
    }
 
-   stage('Creating Jobs') {
+   stage('Creating jobs') {
       step (
          $class: 'ExecuteDslScripts',
          targets: ['jobs.groovy'].join('\n'),
