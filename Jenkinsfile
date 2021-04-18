@@ -1,4 +1,8 @@
 node {
+   stage('Checking out') {
+      checkout scm
+   }
+
    stage('Creating Jobs') {
       step (
          $class: 'ExecuteDslScripts',
