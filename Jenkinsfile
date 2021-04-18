@@ -1,4 +1,4 @@
-node("${SLAVE}") {
+node(env.SLAVE) {
    checkout scm
    sh 'pwd'
     step([
