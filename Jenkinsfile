@@ -1,11 +1,11 @@
 node {
-	stage('Checking out') {
-		checkout scm
-	}
+  stage('Checking out') {
+    checkout scm
+  }
 
-	stage('Creating jobs') {
-		jobDsl (
-			targets: 'jobs.groovy'
-		)
-	}
+  stage('Creating jobs') {
+    jobDsl (
+      targets: 'jobs.groovy'
+    )
+  }
 }
