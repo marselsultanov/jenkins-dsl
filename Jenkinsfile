@@ -1,6 +1,6 @@
 node {
-   stage('Job DSL') {
-      step (
+   stage('Creating Jobs') {
+      step('Job DSL') (
          $class: 'ExecuteDslScripts',
          targets: ['jobs.groovy'].join('\n'),
          removedJobAction: 'DELETE',
