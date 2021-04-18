@@ -1,5 +1,5 @@
 node(env.SLAVE) {
-   stage ('Job DSL') {
+   stage('Job DSL') {
       step (
          $class: 'ExecuteDslScripts',
          targets: ['jobs.groovy'].join('\n'),
