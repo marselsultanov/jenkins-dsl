@@ -7,6 +7,5 @@ node {
          removedViewAction: 'DELETE',
          lookupStrategy: 'SEED_JOB'
       )
-      }
    }
 }
