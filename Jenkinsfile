@@ -6,6 +6,7 @@ node {
          removedJobAction: 'DELETE',
          removedViewAction: 'DELETE',
          lookupStrategy: 'SEED_JOB'
+      )
       }
    }
 }
