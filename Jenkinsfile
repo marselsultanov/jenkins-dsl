@@ -1,4 +1,4 @@
-node(env.SLAVE) {
+node {
    stage('Job DSL') {
       step (
          $class: 'ExecuteDslScripts',
